@@ -15,14 +15,15 @@ using namespace std;
 
 RSA::RSA(){
     p = primeGenerator(defaultLowerBound, defaultUpperBound);
-    q = primeGenerator(defaultLowerBound, defaultUpperBound);
+    //Since we do not want p = q, we will check this.
+    q = equivalenceGenerate(p, defaultLowerBound, defaultUpperBound);
     Intialising();
 }
 
 RSA::RSA(long long int start, long long int end){
     try{
         p = primeGenerator(start, end);
-        q = primeGenerator(start, end);
+        q = equivalenceGenerate(p, start, end);
         Intialising();
     }
     catch(invalid_argument e){

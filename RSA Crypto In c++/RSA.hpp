@@ -32,8 +32,23 @@ private:
     long long int d;
     static long long int x;
     static long long int y;
-    static const long long int defaultLowerBound = 100;
-    static const long long int defaultUpperBound = 200;
+    static const long long int defaultLowerBound = 1;
+    static const long long int defaultUpperBound = 10000;
+    static long long int equivalenceGenerate(long long int p, long long int start, long long int end){
+        long long int q = 0;
+        int i;
+        for(i = 0; i <= 100; i++){
+            q = primeGenerator(start, end);
+            if(q != p){
+                break;
+            }
+        }
+        if(i == 100){
+            throw invalid_argument("Could not find two different prime in the range.");
+        }
+        return q;
+    }
+    
     static long long int modpow(long long int base, long long int exp, long long int modulus) {
         base %= modulus;
         long long int result = 1;
